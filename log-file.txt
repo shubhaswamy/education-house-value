@@ -1,0 +1,994 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  G:\FinalProjectLog_Swamy.txt
+  log type:  text
+ opened on:  12 Dec 2018, 22:17:49
+
+. 
+. use FinalProjectData-Clean.dta
+
+. 
+end of do-file
+
+. findit outreg2
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. reg lvalueh collegedeg, robust 
+
+Linear regression                               Number of obs     =    184,472
+                                                F(1, 184470)      =    8094.98
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.0406
+                                                Root MSE          =     1.0613
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  collegedeg |   .4441326   .0049363    89.97   0.000     .4344575    .4538077
+       _cons |   12.39629   .0033379  3713.82   0.000     12.38975    12.40283
+------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. outreg2 using hvaleduc, excel replace
+command outreg2 is unrecognized
+r(199);
+
+. ssc install outreg2
+checking outreg2 consistency and verifying not already installed...
+cannot write in directory c:\ado\plus\o
+r(603);
+
+. ssc install outreg
+checking outreg consistency and verifying not already installed...
+all files already exist and are up to date.
+
+. reg lvalueh collegedeg, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(1, 184470)      =    8094.98
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.0406
+                                                Root MSE          =     1.0613
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  collegedeg |   .4441326   .0049363    89.97   0.000     .4344575    .4538077
+       _cons |   12.39629   .0033379  3713.82   0.000     12.38975    12.40283
+------------------------------------------------------------------------------
+
+. outreg using hvaleduc, excel replace
+option excel not allowed
+r(198);
+
+. outreg using hvaleduc.doc, replace
+(note: file hvaleduc.doc not found)
+                         ----------------------------
+                                         lvalueh    
+                         ----------------------------
+                          collegedeg      0.444     
+                                        (89.97)**   
+                          _cons           12.396    
+                                       (3,713.82)** 
+                          R2               0.04     
+                          N              184,472    
+                         ----------------------------
+                              * p<0.05; ** p<0.01
+
+
+. reg lvalueh educ lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(2, 184469)      =   12371.91
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1830
+                                                Root MSE          =     .97935
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        educ |   .0276245    .000738    37.43   0.000      .026178    .0290711
+   lhhincome |   .4796953   .0034481   139.12   0.000      .472937    .4864535
+       _cons |   6.918699   .0389738   177.52   0.000     6.842312    6.995087
+------------------------------------------------------------------------------
+
+.  outreg using hvaleduc.doc, merge
+
+                   ----------------------------------------
+                                   lvalueh      lvalueh   
+                   ----------------------------------------
+                    collegedeg      0.444                 
+                                  (89.97)**               
+                    educ                         0.028    
+                                               (37.43)**  
+                    lhhincome                    0.480    
+                                               (139.12)** 
+                    _cons           12.396       6.919    
+                                 (3,713.82)**  (177.52)** 
+                    R2               0.04         0.18    
+                    N              184,472      184,472   
+                   ----------------------------------------
+                              * p<0.05; ** p<0.01
+
+
+. reg lvalueh lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(1, 184470)      =   21019.22
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1769
+                                                Root MSE          =     .98298
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+   lhhincome |    .495882   .0034203   144.98   0.000     .4891782    .5025858
+       _cons |   6.926993   .0395962   174.94   0.000     6.849386    7.004601
+------------------------------------------------------------------------------
+
+.  outreg using hvaleduc.doc, merge
+
+             ----------------------------------------------------
+                             lvalueh      lvalueh     lvalueh   
+             ----------------------------------------------------
+              collegedeg      0.444                             
+                            (89.97)**                           
+              educ                         0.028                
+                                         (37.43)**              
+              lhhincome                    0.480       0.496    
+                                         (139.12)**  (144.98)** 
+              _cons           12.396       6.919       6.927    
+                           (3,713.82)**  (177.52)**  (174.94)** 
+              R2               0.04         0.18        0.18    
+              N              184,472      184,472     184,472   
+             ----------------------------------------------------
+                              * p<0.05; ** p<0.01
+
+
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+.  outreg using hvaleduc.doc, merge
+
+       -----------------------------------------------------------------
+                        lvalueh      lvalueh     lvalueh     lvalueh   
+       -----------------------------------------------------------------
+        collegedeg       0.444                                         
+                       (89.97)**                                       
+        educ                          0.028                            
+                                    (37.43)**                          
+        lhhincome                     0.480       0.496       0.449    
+                                    (139.12)**  (144.98)**  (129.27)** 
+        hsgrad                                                -0.157   
+                                                            (22.44)**  
+        collegedrop                                           -0.047   
+                                                             (5.70)**  
+        assocdeg                                              -0.090   
+                                                             (8.59)**  
+        bachdeg                                               0.170    
+                                                            (24.57)**  
+        advdeg                                                0.282    
+                                                            (37.29)**  
+        _cons            12.396       6.919       6.927       7.439    
+                      (3,713.82)**  (177.52)**  (174.94)**  (185.05)** 
+        R2                0.04         0.18        0.18        0.20    
+        N               184,472      184,472     184,472     184,472   
+       -----------------------------------------------------------------
+                              * p<0.05; ** p<0.01
+
+
+. reg lvalueh collegedeg lhhincome collegedeg_income, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(3, 184468)      =    9277.05
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1883
+                                                Root MSE          =     .97618
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  collegedeg |   .1886478   .0826936     2.28   0.023     .0265702    .3507253
+   lhhincome |    .464004   .0044402   104.50   0.000     .4553013    .4727067
+collegedeg~e |   .0046057   .0071029     0.65   0.517    -.0093157    .0185272
+       _cons |   7.191286   .0505751   142.19   0.000      7.09216    7.290412
+------------------------------------------------------------------------------
+
+.  outreg using hvaleduc.doc, merge
+
+    -----------------------------------------------------------------------
+                           lvalueh      lvalueh     lvalueh     lvalueh   
+    -----------------------------------------------------------------------
+     collegedeg             0.444                                         
+                          (89.97)**                                       
+     educ                                0.028                            
+                                       (37.43)**                          
+     lhhincome                           0.480       0.496       0.449    
+                                       (139.12)**  (144.98)**  (129.27)** 
+     hsgrad                                                      -0.157   
+                                                               (22.44)**  
+     collegedrop                                                 -0.047   
+                                                                (5.70)**  
+     assocdeg                                                    -0.090   
+                                                                (8.59)**  
+     bachdeg                                                     0.170    
+                                                               (24.57)**  
+     advdeg                                                      0.282    
+                                                               (37.29)**  
+     collegedeg_income                                                    
+                                                                          
+     _cons                  12.396       6.919       6.927       7.439    
+                         (3,713.82)**  (177.52)**  (174.94)**  (185.05)** 
+     R2                      0.04         0.18        0.18        0.20    
+     N                     184,472      184,472     184,472     184,472   
+    -----------------------------------------------------------------------
+                              * p<0.05; ** p<0.01
+
+
+                       ---------------------------------
+                                             lvalueh   
+                       ---------------------------------
+                        collegedeg            0.189    
+                                             (2.28)*   
+                        educ                           
+                                                       
+                        lhhincome             0.464    
+                                            (104.50)** 
+                        hsgrad                         
+                                                       
+                        collegedrop                    
+                                                       
+                        assocdeg                       
+                                                       
+                        bachdeg                        
+                                                       
+                        advdeg                         
+                                                       
+                        collegedeg_income     0.005    
+                                              (0.65)   
+                        _cons                 7.191    
+                                            (142.19)** 
+                        R2                     0.19    
+                        N                    184,472   
+                       ---------------------------------
+                              * p<0.05; ** p<0.01
+
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. *bar graph house value by education category
+. graph bar valueh, over(educ)
+
+. 
+end of do-file
+
+. graph bar valueh, over(educ) blabel()
+
+. graph hbar valueh, over(educ) blabel()
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. *bar graph house value by education category
+. graph hbar valueh, over(educ)
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. graph hbar valueh, over(educ), title("Average House Value by Education Level"
+> )
+invalid 'title' 
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. graph hbar valueh, over(educ) title("Average House Value by Education Level")
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. sum city hhincome valueh educ
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+        city |    184,472    3917.227    1861.365         10       7590
+    hhincome |    184,472    128946.6    128533.1          4    2030000
+      valueh |    184,472    481407.7    638054.4       1000    6308000
+        educ |    184,472    6.977335    3.103532          1         11
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. *overall descriptive stats 
+. bysort collegedeg: sum hhincome valueh
+
+-------------------------------------------------------------------------------
+-> collegedeg = 0
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    hhincome |    109,132    106759.6    106801.3          4    2030000
+      valueh |    109,132    404849.2      543714       1000    6308000
+
+-------------------------------------------------------------------------------
+-> collegedeg = 1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    hhincome |     75,340    161084.9    148940.2          4    2030000
+      valueh |     75,340    592304.6      740152       1000    6308000
+
+
+. 
+end of do-file
+
+. univar hhincome valueh, by(collegedeg) onehdr
+command univar is unrecognized
+r(199);
+
+. tabstat city hhincome valueh educ
+
+   stats |      city  hhincome    valueh      educ
+---------+----------------------------------------
+    mean |  3917.227  128946.6  481407.7  6.977335
+--------------------------------------------------
+
+. tabstat city hhincome valueh educ, statistics(count mean median min max)
+
+   stats |      city  hhincome    valueh      educ
+---------+----------------------------------------
+       N |    184472    184472    184472    184472
+    mean |  3917.227  128946.6  481407.7  6.977335
+     p50 |      4130     95000    315000         7
+     min |        10         4      1000         1
+     max |      7590   2030000   6308000        11
+--------------------------------------------------
+
+. tabstat hhincome valueh, statistics(count mean median min max)
+
+   stats |  hhincome    valueh
+---------+--------------------
+       N |    184472    184472
+    mean |  128946.6  481407.7
+     p50 |     95000    315000
+     min |         4      1000
+     max |   2030000   6308000
+------------------------------
+
+. tabstat hhincome valueh, statistics(count mean median min max sd)
+
+   stats |  hhincome    valueh
+---------+--------------------
+       N |    184472    184472
+    mean |  128946.6  481407.7
+     p50 |     95000    315000
+     min |         4      1000
+     max |   2030000   6308000
+      sd |  128533.1  638054.4
+------------------------------
+
+. tabstat hhincome valueh collegedeg, statistics(count mean median min max sd)
+
+   stats |  hhincome    valueh  colleg~g
+---------+------------------------------
+       N |    184472    184472    184472
+    mean |  128946.6  481407.7  .4084089
+     p50 |     95000    315000         0
+     min |         4      1000         0
+     max |   2030000   6308000         1
+      sd |  128533.1  638054.4  .4915408
+----------------------------------------
+
+. tabstat hhincome valueh collegedeg hsgrad collegedrop assocdeg bachdeg advdeg
+>  , statistics(count mean median min max sd)
+
+   stats |  hhincome    valueh  colleg~g    hsgrad  colleg~p  assocdeg
+---------+------------------------------------------------------------
+       N |    184472    184472    184472    184472    184472    184472
+    mean |  128946.6  481407.7  .4084089  .2591342  .1174704  .0633538
+     p50 |     95000    315000         0         0         0         0
+     min |         4      1000         0         0         0         0
+     max |   2030000   6308000         1         1         1         1
+      sd |  128533.1  638054.4  .4915408  .4381606  .3219809  .2435989
+----------------------------------------------------------------------
+
+   stats |   bachdeg    advdeg
+---------+--------------------
+       N |    184472    184472
+    mean |  .1953576  .1496975
+     p50 |         0         0
+     min |         0         0
+     max |         1         1
+      sd |  .3964768  .3567756
+------------------------------
+
+. tabstat hhincome valueh collegedeg, statistics(count mean median min max sd)
+
+   stats |  hhincome    valueh  colleg~g
+---------+------------------------------
+       N |    184472    184472    184472
+    mean |  128946.6  481407.7  .4084089
+     p50 |     95000    315000         0
+     min |         4      1000         0
+     max |   2030000   6308000         1
+      sd |  128533.1  638054.4  .4915408
+----------------------------------------
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. *overall descriptive stats for numerical vars 
+. tabstat hhincome valueh collegedeg, statistics(count mean median min max sd)
+
+   stats |  hhincome    valueh  colleg~g
+---------+------------------------------
+       N |    184472    184472    184472
+    mean |  128946.6  481407.7  .4084089
+     p50 |     95000    315000         0
+     min |         4      1000         0
+     max |   2030000   6308000         1
+      sd |  128533.1  638054.4  .4915408
+----------------------------------------
+
+. 
+end of do-file
+
+. tabstat hhincome valueh collegedeg, statistics(count mean p25 median p75 min 
+> max sd)
+
+   stats |  hhincome    valueh  colleg~g
+---------+------------------------------
+       N |    184472    184472    184472
+    mean |  128946.6  481407.7  .4084089
+     p25 |     54000    160000         0
+     p50 |     95000    315000         0
+     p75 |    155800    590000         1
+     min |         4      1000         0
+     max |   2030000   6308000         1
+      sd |  128533.1  638054.4  .4915408
+----------------------------------------
+
+. tabstat hhincome valueh collegedeg, statistics(count mean p25 median p75 min 
+> max sd)
+
+   stats |  hhincome    valueh  colleg~g
+---------+------------------------------
+       N |    184472    184472    184472
+    mean |  128946.6  481407.7  .4084089
+     p25 |     54000    160000         0
+     p50 |     95000    315000         0
+     p75 |    155800    590000         1
+     min |         4      1000         0
+     max |   2030000   6308000         1
+      sd |  128533.1  638054.4  .4915408
+----------------------------------------
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. browse
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. do "C:\Users\susw8348\AppData\Local\Temp\STD3eb8_000000.tmp"
+
+. 
+. *categorical variable regression 
+. reg lvalueh hsgrad collegedrop assocdeg bachdeg advdeg lhhincome, robust
+
+Linear regression                               Number of obs     =    184,472
+                                                F(6, 184465)      =    5175.51
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.1959
+                                                Root MSE          =     .97158
+
+------------------------------------------------------------------------------
+             |               Robust
+     lvalueh |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      hsgrad |  -.1572936   .0070093   -22.44   0.000    -.1710316   -.1435556
+ collegedrop |  -.0472497    .008296    -5.70   0.000    -.0635095   -.0309898
+    assocdeg |  -.0897474   .0104504    -8.59   0.000      -.11023   -.0692648
+     bachdeg |   .1697087   .0069071    24.57   0.000     .1561709    .1832466
+      advdeg |   .2819271     .00756    37.29   0.000     .2671097    .2967445
+   lhhincome |   .4489247   .0034727   129.27   0.000     .4421182    .4557311
+       _cons |   7.438721   .0401995   185.05   0.000     7.359931    7.517511
+------------------------------------------------------------------------------
+
+. 
+. *joint hypothesis 
+. test hsgrad collegedrop assocdeg bachdeg advdeg 
+
+ ( 1)  hsgrad = 0
+ ( 2)  collegedrop = 0
+ ( 3)  assocdeg = 0
+ ( 4)  bachdeg = 0
+ ( 5)  advdeg = 0
+
+       F(  5,184465) =  864.87
+            Prob > F =    0.0000
+
+. 
+end of do-file
+
+. exit, clear
